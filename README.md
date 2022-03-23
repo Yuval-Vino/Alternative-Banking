@@ -1,2 +1,4 @@
 # Alternative-Banking
-Java Project
+Java Project BY:
+Yuval Vinokur
+Gil Kanetty
