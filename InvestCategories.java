@@ -7,7 +7,7 @@ public enum InvestCategories {
 
     private String displayName;
 
-    InvestCategories(String displayName) {
+     private InvestCategories(String displayName) {
         this.displayName = displayName;
     }
 
