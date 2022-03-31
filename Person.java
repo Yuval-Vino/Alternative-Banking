@@ -1,23 +1,25 @@
 public class Person {
+
     private String  name;
-    BankAccount account;
+    private BankAccount account;
 
     Person(String name,int bankBalance)
     {
         this.name=name;
-        this.account(bankBalance);
-
+        this.account=new BankAccount(bankBalance);
     }
 
-    private void account(int bankBalance) {
+    public void balanceAction(double sum,int YAZ) {
+        account.balanceAction(sum,YAZ);
     }
 
     public  String getName(){return name;}
-    public  int getBankBalance(){return account.balance;}
+    public  double getBankBalance(){return account.getBalance();}
 
     @Override
     public String toString(){
-        return "Person: "+name+" Balance:"+account.balance;
+        return "Person: "+name;
     }
+    public String toStringWithBalance(){return toString()+ " Balance: "+account.getBalance();}
 
 }
