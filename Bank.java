@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Bank {
     List<Loan> pending = new ArrayList<>();
@@ -13,69 +12,58 @@ public class Bank {
 
     public void newDay(){
         time.moveTime();
-        for (Loan i:active) {
+        //time=2
+        for (Loan i : active) {
             if( i.isPayDay(time))
                 payment(i);
+        }
+        active.removeAll(finished);
+    }
+    public void payment(Loan loan) {
 
+        for (Map.Entry<Person, Integer> loaner : loan.loaners.entrySet()) {
+            double repayAmount = (loaner.getValue() / (loan.loanDuration / loan.paymentFreq)) * (1 + loan.interest);
+            //            (   Total investment / ( duration/freq ) ) * interest
+            loaner.getKey().balanceAction(repayAmount, time.time);
+            loan.borrower.balanceAction(-repayAmount,time.time);
+            loan.payedAmount += repayAmount;
+        }
+
+        if(loan.payedAmount + 0.1 >=loan.desiredAmount*(1+loan.interest)) {
+            loan.status=LoanStatus.FINISHED;
+            finished.add(loan);
         }
     }
-    public void payment(Loan loan){
-        //for (Person name:loan.loaners.
-         //    ) {
 
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void createLoan(String loanName, Person borrower,String category, int desiredAmount, int loanDuration, int paymentFreq, int interest) {
+    public void createLoan(String loanName, Person borrower,String category, int desiredAmount, int loanDuration, int paymentFreq, double interest) {
         pending.add(new Loan(loanName, borrower, category,desiredAmount, loanDuration, paymentFreq, interest));
     }
 
-    public List<Loan> searchLoanWithFilters(Person seeker,int minInterest, int minDuration,int sumToInvest) {
+    public List<Loan> searchLoanWithFilters(Person seeker,double minInterest, int maxDuration,int sumToInvest) {
         int count = 0;
         if(seeker.getBankBalance() < sumToInvest){
             //exception
             return null;
         }
-        List<Loan> loans = new ArrayList<>();
-        for (Loan loan : pending)
-            if (loan.interest >= minInterest && loan.loanDuration >= minDuration) {
-                loans.add(loan);
-                System.out.println(count + "." + loan.toString());
-            }
 
+        List<Loan> loans=pending.stream().
+                filter(t->t.interest>=minInterest&& t.loanDuration<=maxDuration).
+                collect(Collectors.toList());
+        System.out.println(loans);
     return loans;}
      //                    A,B,C,D,E       B,D,E                                        0,2
     public void invest(Person loaner,int sum,List<Loan> LoansWithFilters,List<Integer>indexes) {
-
         Collections.sort(indexes);
-        int indexCN = 0;
         int singleInvestAmount = sum / indexes.size();
-        for (Loan i : pending) {
-            //Need to override equals in loans and person
-            if (i.equals(LoansWithFilters.get(indexes.get(indexCN)))) {
-                i.addLoaner(loaner, singleInvestAmount,time);
-                loaner.account.balanceAction(-singleInvestAmount);
-                if (i.status == LoanStatus.ACTIVE) {
-                    active.add(i);
-                    pending.remove(i);
-                }
-                indexCN++;
+
+        for (int i : indexes){
+            LoansWithFilters.get(i).addLoaner(loaner, singleInvestAmount,time);
+            loaner.balanceAction(-singleInvestAmount,time.time);
+            if (LoansWithFilters.get(i).status == LoanStatus.ACTIVE) {
+                LoansWithFilters.get(i).initalYAZ=time.time;
+                LoansWithFilters.get(i).finalYAZ=time.time+LoansWithFilters.get(i).loanDuration;
+                active.add(LoansWithFilters.get(i));
+                pending.remove(LoansWithFilters.get(i));
             }
         }
     }
