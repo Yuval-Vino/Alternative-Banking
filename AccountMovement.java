@@ -1,8 +1,10 @@
 public class AccountMovement {
-    int YAZ;
-    double sumBefore;
-    double actionSum;
-    double sumAfter;
+    private int YAZ;
+    private double sumBefore;
+    private double actionSum;
+    private double sumAfter;
+
+
     AccountMovement(int YAZ,double sumBefore,double movementSum){
         this.YAZ=YAZ;
         this.sumBefore=sumBefore;

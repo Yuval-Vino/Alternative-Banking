@@ -1,4 +1,5 @@
 public class Person {
+
     private String  name;
     private BankAccount account;
 
@@ -13,12 +14,12 @@ public class Person {
     }
 
     public  String getName(){return name;}
-    public  double getBankBalance(){return account.balance;}
+    public  double getBankBalance(){return account.getBalance();}
 
     @Override
     public String toString(){
         return "Person: "+name;
     }
-    public String personName(){return "Balance: "+account.balance;}
+    public String toStringWithBalance(){return toString()+ " Balance: "+account.getBalance();}
 
 }

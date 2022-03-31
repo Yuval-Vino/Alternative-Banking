@@ -6,9 +6,9 @@ public class Bank {
     List<Loan> finished = new ArrayList<>();
     List<Loan> active = new ArrayList<>();
     List<Person> users = new ArrayList<>();
-    TimeLine time=new TimeLine();
+    private TimeLine time=new TimeLine();
 
-
+    public int getTime(){return time.getTime();}
 
     public void newDay(){
         time.moveTime();
@@ -22,14 +22,14 @@ public class Bank {
     public void payment(Loan loan) {
 
         for (Map.Entry<Person, Integer> loaner : loan.loaners.entrySet()) {
-            double repayAmount = (loaner.getValue() / (loan.loanDuration / loan.paymentFreq)) * (1 + loan.interest);
+            double repayAmount = (loaner.getValue() / (loan.getLoanDuration() / loan.getFreq())) * (1 + loan.getInterest());
             //            (   Total investment / ( duration/freq ) ) * interest
-            loaner.getKey().balanceAction(repayAmount, time.time);
-            loan.borrower.balanceAction(-repayAmount,time.time);
-            loan.payedAmount += repayAmount;
+            loaner.getKey().balanceAction(repayAmount, time.getTime());
+            loan.getBorrower().balanceAction(-repayAmount,time.getTime());
+            loan.addPayedAmount(repayAmount) ;
         }
 
-        if(loan.payedAmount + 0.1 >=loan.desiredAmount*(1+loan.interest)) {
+        if(loan.getPayedAmount() + 0.1 >=loan.getDesiredAmount()*(1+loan.getInterest())) {
             loan.status=LoanStatus.FINISHED;
             finished.add(loan);
         }
@@ -47,7 +47,7 @@ public class Bank {
         }
 
         List<Loan> loans=pending.stream().
-                filter(t->t.interest>=minInterest&& t.loanDuration<=maxDuration).
+                filter(t->t.getInterest()>=minInterest&& t.getLoanDuration()<=maxDuration).
                 collect(Collectors.toList());
         System.out.println(loans);
     return loans;}
@@ -58,10 +58,9 @@ public class Bank {
 
         for (int i : indexes){
             LoansWithFilters.get(i).addLoaner(loaner, singleInvestAmount,time);
-            loaner.balanceAction(-singleInvestAmount,time.time);
+            loaner.balanceAction(-singleInvestAmount,time.getTime());
             if (LoansWithFilters.get(i).status == LoanStatus.ACTIVE) {
-                LoansWithFilters.get(i).initalYAZ=time.time;
-                LoansWithFilters.get(i).finalYAZ=time.time+LoansWithFilters.get(i).loanDuration;
+                LoansWithFilters.get(i).turnToActive(time);
                 active.add(LoansWithFilters.get(i));
                 pending.remove(LoansWithFilters.get(i));
             }
