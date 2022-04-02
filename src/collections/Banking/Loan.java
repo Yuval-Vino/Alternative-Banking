@@ -61,13 +61,13 @@ public class Loan {
     public String toString()
     {
         String res= "Loan name: "+name+
-                "|Borrower name: "+borrower+
-                "|Borrowing for : "+category+
-                "|Loan Amount:" + desiredAmount+
-                "|Loan duration: "+ loanDuration+
-                "|Interest :" +interest+
-                "|Frequency every "+paymentFreq+" YAZ"+
-                "|Loan Status:" + status;
+                " |Borrower name: "+borrower+
+                " |Borrowing for : "+category+
+                " |Loan Amount:" + desiredAmount+
+                " |Loan duration: "+ loanDuration+
+                " |Interest :" +interest+"%"+
+                " |Frequency every "+paymentFreq+" YAZ"+
+                " |Loan Status:" + status;
       if(status== LoanStatus.PENDING){
             res+=addPendingInfo();
         }

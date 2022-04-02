@@ -1,18 +1,30 @@
 package collections.Banking;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.stream.Collectors;
 import Time.TimeLine;
+import XMLReader.SchemaBasedXML;
+import schema.generated.AbsCustomer;
+import schema.generated.AbsLoan;
+
+import javax.xml.bind.JAXBException;
+
 public class Bank {
+    SchemaBasedXML schema;
     public List<Loan> pending = new ArrayList<>();
     public List<Loan> finished = new ArrayList<>();
     public  List<Loan> active = new ArrayList<>();
     public Map<String,Client> users = new HashMap<>();
     private TimeLine time=new TimeLine();
 
+    public void buildBankFromXML(String Path) throws JAXBException, FileNotFoundException {
+        schema = new SchemaBasedXML(Path);
+        buildFromSchem();
+    }
     public void addNewClient(String person,int bankBalance)
     {
-        Client temp=new Client(person,bankBalance);
+        Client temp = new Client(person,bankBalance);
         users.put(person,temp);
     }
 
@@ -29,7 +41,7 @@ public class Bank {
     public void payment(Loan loan) {
 
         for (Map.Entry<Client, Integer> loaner : loan.loaners.entrySet()) {
-            double repayAmount = (loaner.getValue() / (loan.getLoanDuration() / loan.getFreq())) * (1 + loan.getInterest());
+            double repayAmount = (loaner.getValue() / (loan.getLoanDuration() / loan.getFreq())) * ( (loan.getInterest() / 100) + 1);
             //            (   Total investment / ( duration/freq ) ) * interest
             loaner.getKey().balanceAction(repayAmount, time.getTime());
             loan.getBorrower().balanceAction(-repayAmount,time.getTime());
@@ -81,4 +93,21 @@ public class Bank {
             }
         }
     }
+    private void buildFromSchem(){
+        List<AbsCustomer> ClientList=schema.getAllCustomers();
+        List<AbsLoan> LoanList = schema.getAllLoans();
+        for (AbsCustomer client:ClientList) {
+            addNewClient(client.getName(),client.getAbsBalance());
+        }
+        for (AbsLoan loan:LoanList) {
+            createLoan(loan.getId(),loan.getAbsOwner(),
+                    loan.getAbsCategory(),loan.getAbsCapital(),
+                    loan.getAbsTotalYazTime(),loan.getAbsPaysEveryYaz(),
+                    loan.getAbsIntristPerPayment());
+        }
+    }
+
+
+
+
 }
