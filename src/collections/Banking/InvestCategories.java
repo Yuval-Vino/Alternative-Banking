@@ -3,7 +3,7 @@ public enum InvestCategories {
     SETUP_A_BUSINESS("Setup a business"),
     OVERDRAFT_COVER("Overdraft cover"),
     INVESTMENT("Investment"),
-    HAPPY_EVENT("Happy event"),
+    HAPPY_EVENT("Happy Event"),
     RENOVATE("Renovate");
 
     private String displayName;

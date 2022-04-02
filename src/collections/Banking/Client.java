@@ -19,7 +19,7 @@ public class Client {
 
     @Override
     public String toString(){
-        return "Person: "+name;
+        return name;
     }
     public String toStringWithBalance(){return toString()+ " Balance: "+account.getBalance();}
 
