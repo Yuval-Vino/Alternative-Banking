@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="ABSEngine:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ABSEngine_jar</output-path>
+    <root id="archive" name="ABSEngine_jar.jar">
+      <element id="archive" name="ABSEngine.jar">
+        <element id="module-output" name="ABSEngine" />
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
