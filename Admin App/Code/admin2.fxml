@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane id="my-vbox" maxHeight="927.0" maxWidth="1249.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="848.0" prefWidth="1292.0" stylesheets="@CSS/mainCSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="197.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="391.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="442.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="119.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="229.0" minWidth="10.0" prefWidth="168.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="94.0" minHeight="0.0" prefHeight="55.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="171.0" minHeight="0.0" prefHeight="79.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="182.0" minHeight="0.0" prefHeight="127.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="244.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="349.0" minHeight="10.0" prefHeight="194.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="705.0" minHeight="10.0" prefHeight="288.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnSpan="3" GridPane.rowSpan="6">
+        <tabs>
+          <Tab id="glass-grey" fx:id="loansTab" onSelectionChanged="#fixTables" text="Loans">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="793.0" prefWidth="758.0">
+                     <children>
+                        <TableView fx:id="loansTable" layoutX="14.0" layoutY="68.0" prefHeight="809.0" prefWidth="978.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab id="glass-grey" fx:id="clientTab" onSelectionChanged="#fixTables" text="Client information">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="clientsTable" layoutX="190.0" layoutY="75.0" prefHeight="809.0" prefWidth="978.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
+      </TabPane>
+      <Button id="rich-blue" mnemonicParsing="false" onAction="#moveDay" prefHeight="89.0" prefWidth="154.0" text="Increase YAZ" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin></Button>
+      <Label id="admin-top-labels" prefHeight="33.0" prefWidth="154.0" text="Admin view" GridPane.columnIndex="3" GridPane.columnSpan="2" />
+      <Label id="admin-top-labels" fx:id="currYAZLabel" prefHeight="25.0" prefWidth="145.0" text="Current YAZ :" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+      <Button id="rich-blue" mnemonicParsing="false" onAction="#rewindOn" prefHeight="45.0" prefWidth="163.0" text="Rewind" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+      <Button id="rich-blue" fx:id="unRewindButton" disable="true" mnemonicParsing="false" onAction="#rewindOff" prefHeight="43.0" prefWidth="136.0" text="Unrewind" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
+      <ComboBox fx:id="rewindComboBox" prefHeight="45.0" prefWidth="114.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+      <Label fx:id="rewindLabel" text="Rewind on!" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
+   </children>
+</GridPane>
