@@ -25,10 +25,10 @@ The Alternative Banking System is a project created and owned by [Yuval Vinokur]
 - User-friendly JavaFX interface
 
 ## Getting Started
-  ### Prerequisites
-    Before you begin, ensure you have the following prerequisites:
-    - Java Development Kit (JDK)
-    - Apache Tomcat Server
+### Prerequisites
+Before you begin, ensure you have the following prerequisites:
+- [Java Development Kit (JDK)](https://www.oracle.com/java/technologies/javase-downloads.html)
+- [Apache Tomcat Server](https://tomcat.apache.org/)
 
 ### Installation
 1. Clone the repository:
@@ -66,4 +66,4 @@ The project follows a client-server architecture with the following components:
 * Apache Tomcat (Backend)
 ### Documents
 * [DFD](https://github.com/Yuval-Vino/Alternative-Banking/blob/main/Documents/Alternative-Banking%20DFD.odg)
-* [ERD!](https://github.com/Yuval-Vino/Alternative-Banking/blob/ce3b2aa5dd335a98ca20da2cd6849e090234057e/Alternative-Banking%20%20ERD.png)
+* [ERD](https://github.com/Yuval-Vino/Alternative-Banking/blob/ce3b2aa5dd335a98ca20da2cd6849e090234057e/Alternative-Banking%20%20ERD.png)
