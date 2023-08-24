@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "2c6905a0-4fbd-474a-ba7d-05696aeb87aa",
+		"name": "ABS Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21792143"
+	},
+	"item": [
+		{
+			"name": "New Loan Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/AppMoudle_Web/newloanpostman?username=abc&loanName=hi&loanAmount=150&loadDuration=10&loanFreq=2&loanInterest=2&loanCategory=hi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"AppMoudle_Web",
+						"newloanpostman"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "abc"
+						},
+						{
+							"key": "loanName",
+							"value": "hi"
+						},
+						{
+							"key": "loanAmount",
+							"value": "150"
+						},
+						{
+							"key": "loadDuration",
+							"value": "10"
+						},
+						{
+							"key": "loanFreq",
+							"value": "2"
+						},
+						{
+							"key": "loanInterest",
+							"value": "2"
+						},
+						{
+							"key": "loanCategory",
+							"value": "hi"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Loans",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "home",
+			"value": "http://localhost:8080/AppMoudle_Web/"
+		}
+	]
+}
