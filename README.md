@@ -14,7 +14,8 @@
   - [Documents](#documents)
 
 ## Introduction
-The Alternative Banking System leverages JavaFX for the user interface and Tomcat as the server to connect loan providers with loan seekers. This platform enables users to register, create loan requests, view available loans, and manage their lending or borrowing activities.
+The Alternative Banking System is a project created and owned by [Yuval Vinokur](https://github.com/Yuval-Vino). This Java-based application uses JavaFX for the front-end and Tomcat for the backend. It facilitates connections between lenders and borrowers, creating a platform for peer-to-peer lending activities.
+
 
 ## Features
 - User registration and authentication
