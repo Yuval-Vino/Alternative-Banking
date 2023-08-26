@@ -55,7 +55,7 @@ This step may involve compiling JavaFX code and creating the necessary artifacts
     * Monitor loan requests and transactions.
 ### Architecture
 The project follows a client-server architecture with the following components:
-* Client-side: The JavaFX-based front-end interface for users. It communicates with the server via HTTP requests or other communication mechanisms you've implemented.
+* Client-side: The JavaFX-based front-end interface for users. It communicates with the server via HTTP requests.
 * Admin-side: The JavaFX-based front-end interface for administrators.
 * Server-side: Tomcat server handling incoming requests and interactions between clients and administrators.
 * Tomcat: Apache Tomcat server hosts the application, managing requests and serving resources.
